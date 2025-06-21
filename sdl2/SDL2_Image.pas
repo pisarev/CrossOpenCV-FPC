@@ -1,4 +1,4 @@
-﻿unit SDL2_Image;
+unit SDL2_Image;
 {*******************************************************************************
 
   SDL2_Image.pas  v1.0  29/07/2013 first version for DelphiXE

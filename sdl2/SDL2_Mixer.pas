@@ -1,4 +1,4 @@
-﻿unit SDL2_Mixer;
+unit SDL2_Mixer;
 {*******************************************************************************
 
   SDL2_Mixer.pas  v1.0  29/07/2013 first version for DelphiXE

@@ -802,13 +802,13 @@ procedure cvAXPY(A: pCvArr; real_scalar: double; B, C: pCvArr); {$IFDEF USE_INLI
 //void cvCmp(const CvArr* src1, const CvArr* src2, CvArr* dst, int cmp_op)
 (* procedure cvCmp(const src1, src2: pCvArr; dst: pCvArr;  cmp_op: integer); cdecl; *)
 
-//void cvCmpS(const CvArr* src, double value, CvArr* dst, int cmp_op)¶
+//void cvCmpS(const CvArr* src, double value, CvArr* dst, int cmp_op)Â¶
 (* procedure cvCmpS(const src: pCvArr; value: double; dst: pCvArr;  cmp_op: integer); cdecl; *)
 
 //void cvMin(const CvArr* src1, const CvArr* src2, CvArr* dst)
 (* procedure cvMin(const src1, src2:pCvArr; dst:pCvArr); cdecl; *)
 
-//void cvMinS(const CvArr* src, double value, CvArr* dst)¶
+//void cvMinS(const CvArr* src, double value, CvArr* dst)Â¶
 (* procedure cvMinS(const src:pCvArr; value:double; dst:pCvArr); cdecl; *)
 
 
@@ -822,7 +822,7 @@ procedure cvAXPY(A: pCvArr; real_scalar: double; B, C: pCvArr); {$IFDEF USE_INLI
 // CVAPI(void) cvAbsDiff( const pCvArr* src1, const pCvArr* src2, pCvArr* dst );
 (* procedure cvAbsDiff(const src1: pCvArr; const src2: pCvArr; dst: pCvArr); cdecl; *)
 
-//void cvAbsDiffS(const CvArr* src, CvArr* dst, CvScalar value)¶
+//void cvAbsDiffS(const CvArr* src, CvArr* dst, CvScalar value)Â¶
 (* procedure cvAbsDiffS(const src: pCvArr; dst: pCvArr;value:TCvScalar); cdecl; *)
 
 //CVAPI(void) cvSort( const CvArr* src, CvArr* dst CV_DEFAULT(NULL),

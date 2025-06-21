@@ -19,7 +19,7 @@ unit sdli386utils;
 { Contributor(s)                                                               }
 { --------------                                                               }
 { Dominique Louis <Dominique@SavageSoftware.com.au>                            }
-{ RÛbert KisnÈmeth <mikrobi@freemail.hu>                                       }
+{ R—Ébert Kisn–πmeth <mikrobi@freemail.hu>                                       }
 {                                                                              }
 { Obtained through:                                                            }
 { Joint Endeavour of Delphi Innovators ( Project JEDI )                        }
@@ -103,11 +103,11 @@ unit sdli386utils;
   $Log: sdli386utils.pas,v $
   Revision 1.5  2004/06/02 19:38:53  savage
   Changes to SDL_GradientFillRect as suggested by
-  ¡ngel Eduardo GarcÌa Hern·ndez.  Many thanks.
+  –ëngel Eduardo Garc–Ωa Hern–±ndez.  Many thanks.
 
   Revision 1.4  2004/05/29 23:11:53  savage
   Changes to SDL_ScaleSurfaceRect as suggested by
-  ¡ngel Eduardo GarcÌa Hern·ndez to fix a colour issue with the function. Many thanks.
+  –ëngel Eduardo Garc–Ωa Hern–±ndez to fix a colour issue with the function. Many thanks.
 
   Revision 1.3  2004/02/20 22:04:11  savage
   Added Changes as mentioned by Rodrigo "Rui" R. (1/2 RRC2Soft) to facilitate FPC compilation and it also works in Delphi. Also syncronized the funcitons so that they are identical to sdlutils.pas, when no assembly version is available.

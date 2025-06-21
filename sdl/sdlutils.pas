@@ -19,7 +19,7 @@ unit sdlutils;
 { Contributor(s)                                                               }
 { --------------                                                               }
 { Dominique Louis <Dominique@SavageSoftware.com.au>                            }
-{ RÛbert KisnÈmeth <mikrobi@freemail.hu>                                       }
+{ R—Ébert Kisn–πmeth <mikrobi@freemail.hu>                                       }
 {                                                                              }
 { Obtained through:                                                            }
 { Joint Endeavour of Delphi Innovators ( Project JEDI )                        }
@@ -110,11 +110,11 @@ unit sdlutils;
 
   Revision 1.4  2004/06/02 19:38:53  savage
   Changes to SDL_GradientFillRect as suggested by
-  ¡ngel Eduardo GarcÌa Hern·ndez.  Many thanks.
+  –ëngel Eduardo Garc–Ωa Hern–±ndez.  Many thanks.
 
   Revision 1.3  2004/05/29 23:11:54  savage
   Changes to SDL_ScaleSurfaceRect as suggested by
-  ¡ngel Eduardo GarcÌa Hern·ndez to fix a colour issue with the function. Many thanks.
+  –ëngel Eduardo Garc–Ωa Hern–±ndez to fix a colour issue with the function. Many thanks.
 
   Revision 1.2  2004/02/14 00:23:39  savage
   As UNIX is defined in jedi-sdl.inc this will be used to check linux compatability as well. Units have been changed to reflect this change.

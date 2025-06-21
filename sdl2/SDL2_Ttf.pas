@@ -1,4 +1,4 @@
-﻿unit SDL2_Ttf;
+unit SDL2_Ttf;
 {*******************************************************************************
 
   SDL2_Ttf.pas    v1.0  29/07/2013 first version for DelphiXE

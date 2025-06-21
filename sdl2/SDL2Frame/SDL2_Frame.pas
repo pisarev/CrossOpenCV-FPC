@@ -1,7 +1,7 @@
 {
   ================================================================================
   ==                                                                            ==
-  ==  ATENCIÓN: NO CARGAR LOS GRÁFICOS EN EL ONCREATE NI ONSHOW PORQUE EL       ==
+  ==  ATENCIÐ£N: NO CARGAR LOS GRÐ‘FICOS EN EL ONCREATE NI ONSHOW PORQUE EL       ==
   ==            COMPONENTE SDL2FRAME AUN NO ESTA COMPLETADO Y NO FUNCIONA       ==
   ==                                                                            ==
   ================================================================================
@@ -70,7 +70,7 @@ begin
   if FSDLPantalla.Window <> nil then
   begin
     FSDLPantalla.Renderer := SDL_CreateRenderer(FSDLPantalla.Window, -1, 0);
-    // no forzamos ningún tipo de render (0) para que el sistema coja el que pueda Hard-Soft
+    // no forzamos ningÑŠn tipo de render (0) para que el sistema coja el que pueda Hard-Soft
     if FSDLPantalla.Renderer <> nil then
     begin
       New(FRenderInfo);
