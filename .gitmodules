@@ -1,6 +1,0 @@
-[submodule "Delphi-FFMPEG"]
-	path = Delphi-FFMPEG
-	url = https://github.com/Laex/Delphi-FFMPEG.git
-[submodule "jedi"]
-	path = jedi
-	url = https://github.com/project-jedi/jedi.git
