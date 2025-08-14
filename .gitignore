@@ -1,0 +1,39 @@
+# Delphi / FreePascal temporary and build files
+*.dcu
+*.ppu
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.map
+*.lib
+*.compiled
+*.bpl
+*.dcp
+*.dres
+*.identcache
+*.stat
+*.tvsconfig
+*.dproj.local
+*.cfg
+*.local
+*.bak
+*.~*
+*.rs.bak
+
+# Delphi backup / autosave / recovery
+*.dsk
+*.ddp
+__history/
+__recovery/
+
+# macOS debug symbols (in case of cross-compilation)
+*.dSYM/
+
+# Build output folders (optional, if you generate builds in these)
+Win32/
+Win64/
+build/
+bin/
+output/
