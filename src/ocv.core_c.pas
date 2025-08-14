@@ -2382,6 +2382,14 @@ const
   CV_ErrModeParent = 1; // * Print error and continue */
   CV_ErrModeSilent = 2; // * Don't print and continue */
 
+  // Константы для операций сравнения в OpenCV (используются с cvCmp)
+  CV_CMP_EQ = 0; // Равно (a == b)
+  CV_CMP_GT = 1; // Больше (a > b)
+  CV_CMP_GE = 2; // Больше или равно (a >= b)
+  CV_CMP_LT = 3; // Меньше (a < b)
+  CV_CMP_LE = 4; // Меньше или равно (a <= b)
+  CV_CMP_NE = 5; // Не равно (a != b)
+
   // * Retrives current error processing mode */
   // CVAPI(int)  cvGetErrMode( void );
 
