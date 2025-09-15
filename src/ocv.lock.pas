@@ -55,12 +55,19 @@ unit ocv.lock;
 
 interface
 
-Uses
+{$IFDEF UNIX}
+{$IF DEFINED(USE_CRITICALSECTION) OR DEFINED(USE_SIMLOCK)
+uses
+  SyncObjs
+{$ENDIF}
+{$ELSE}
+uses
   Windows
 {$IF DEFINED(USE_CRITICALSECTION) OR DEFINED(USE_SIMLOCK)}
     , SyncObjs
 {$IFEND}
     ;
+{$ENDIF}
 
 Type
 

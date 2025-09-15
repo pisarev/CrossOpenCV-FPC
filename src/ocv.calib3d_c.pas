@@ -689,7 +689,7 @@ implementation
 
 uses
   {$IFDEF FPC}
-  Windows, {$IFDEF UNIX}dynlibs, {$ENDIF}SysUtils, VersionUtils;
+  {$IFDEF UNIX}dynlibs, {$ENDIF}SysUtils, VersionUtils;
   {$ELSE}
   Winapi.Windows, System.SysUtils, VersionUtils;
   {$ENDIF}
