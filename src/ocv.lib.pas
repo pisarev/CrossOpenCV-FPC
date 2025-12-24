@@ -56,9 +56,17 @@ const
   CV_VERSION_DLL = CV_VERSION_EPOCH + CV_VERSION_MAJOR + CV_VERSION_MINOR;
 
 {$IFDEF MSWINDOWS}
-  CV_DLL_DIR = '.\opencv_2.4.13\';
+  {$IFDEF NO_LOCAL_OPENCV2413}
+    CV_DLL_DIR = '';
+  {$ELSE}
+    CV_DLL_DIR = '.\opencv_2.4.13\';
+  {$ENDIF}
 {$ELSE}
-  CV_DLL_DIR = './bin/opencv_2.4.13/';
+  {$IFDEF NO_LOCAL_OPENCV2413}
+    CV_DLL_DIR = '';
+  {$ELSE}
+    CV_DLL_DIR = './bin/opencv_2.4.13/';
+  {$ENDIF}
 {$ENDIF}
 // -------------------------------
   core_lib =
