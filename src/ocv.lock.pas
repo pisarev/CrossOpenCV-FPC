@@ -314,25 +314,16 @@ begin
 {$ENDIF}
 end;
 
-var
-  Path: string;
 initialization
   {$IFDEF USE_SIMLOCK}
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + Kernel32LibName);
-  {$ENDIF}
-  Kernel32LibHandle := LoadLibrary(Kernel32LibName);
-  SetCurrentDir(Path);
+  Kernel32LibHandle := LoadOcvLibrary(Kernel32LibName);
   if Kernel32LibHandle <> 0 then Initialize(Kernel32LibHandle, False);
   {$ENDIF}
 
 finalization
   {$IFDEF USE_SIMLOCK}
   if Kernel32LibHandle <> 0 then
-     FreeLibrary(Kernel32LibHandle);
+    FreeLibrary(Kernel32LibHandle);
   {$ENDIF}
 
 end.

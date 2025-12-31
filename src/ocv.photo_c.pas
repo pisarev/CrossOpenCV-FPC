@@ -119,21 +119,12 @@ end;
 (* procedure cvInpaint(const src: pCvArr; const inpaint_mask: pCvArr; dst: pCvArr; inpaintRange: double; flags: Integer); cdecl;
   external opencv_photo_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + OpenCVPhotoLibName);
-  {$ENDIF}
-  OpenCVPhotoLibHandle := LoadLibrary(OpenCVPhotoLibName);
-  SetCurrentDir(Path);
+  OpenCVPhotoLibHandle := LoadOcvLibrary(OpenCVPhotoLibName);
   if OpenCVPhotoLibHandle <> 0 then Initialize(OpenCVPhotoLibHandle, False);
 
 finalization
   if OpenCVPhotoLibHandle <> 0 then
-     FreeLibrary(OpenCVPhotoLibHandle);
+    FreeLibrary(OpenCVPhotoLibHandle);
 
 end.

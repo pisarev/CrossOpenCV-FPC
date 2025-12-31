@@ -4351,21 +4351,12 @@ end;
 (* procedure cvCvtPixToPlane(const src: pCvArr; dst0: pCvArr; dst1: pCvArr; dst2: pCvArr; dst3: pCvArr); cdecl; external core_lib name 'cvSplit' {$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* procedure cvCvtPlaneToPix(const src0: pCvArr; const src1: pCvArr; const src2: pCvArr; const src3: pCvArr; dst: pCvArr); cdecl; external core_lib name 'cvMerge' {$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + CoreLibName);
-  {$ENDIF}
-  CoreLibHandle := LoadLibrary(CoreLibName);
-  SetCurrentDir(Path);
+  CoreLibHandle := LoadOcvLibrary(CoreLibName);
   if CoreLibHandle <> 0 then Initialize(CoreLibHandle, False);
 
 finalization
   if CoreLibHandle <> 0 then
-     FreeLibrary(CoreLibHandle);
+    FreeLibrary(CoreLibHandle);
 
 end.

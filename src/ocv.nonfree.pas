@@ -105,17 +105,8 @@ end;
 
 (* function initModule_nonfree(): ByteBool; cdecl; external nonfree_lib name '?initModule_nonfree@cv@@YA_NXZ' {$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + NonFreeLibName);
-  {$ENDIF}
-  NonFreeLibHandle := LoadLibrary(NonFreeLibName);
-  SetCurrentDir(Path);
+  NonFreeLibHandle := LoadOcvLibrary(NonFreeLibName);
   if NonFreeLibHandle <> 0 then
   begin
     Initialize(NonFreeLibHandle, False);
@@ -124,6 +115,6 @@ initialization
 
 finalization
   if NonFreeLibHandle <> 0 then
-     FreeLibrary(NonFreeLibHandle);
+    FreeLibrary(NonFreeLibHandle);
 
 end.

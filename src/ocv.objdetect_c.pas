@@ -432,21 +432,12 @@ end;
   scale: Double); cdecl; external objdetect_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* function cvRunHaarClassifierCascade(const cascade: pCvHaarClassifierCascade; pt: TCvPoint; start_stage: Integer = 0): Integer; cdecl; external objdetect_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + ObjDetectLibName);
-  {$ENDIF}
-  ObjDetectLibHandle := LoadLibrary(ObjDetectLibName);
-  SetCurrentDir(Path);
+  ObjDetectLibHandle := LoadOcvLibrary(ObjDetectLibName);
   if ObjDetectLibHandle <> 0 then Initialize(ObjDetectLibHandle, False);
 
 finalization
   if ObjDetectLibHandle <> 0 then
-     FreeLibrary(ObjDetectLibHandle);
+    FreeLibrary(ObjDetectLibHandle);
 
 end.

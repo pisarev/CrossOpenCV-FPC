@@ -1617,21 +1617,12 @@ end;
   external imgproc_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* procedure cvFitLine(const points: PCvArr; dist_type: Integer; param: Double; reps: Double; aeps: Double; Var line: Single); cdecl; external imgproc_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + ImgProcLibName);
-  {$ENDIF}
-  ImgProcLibHandle := LoadLibrary(ImgProcLibName);
-  SetCurrentDir(Path);
+  ImgProcLibHandle := LoadOcvLibrary(ImgProcLibName);
   if ImgProcLibHandle <> 0 then Initialize(ImgProcLibHandle, False);
 
 finalization
   if ImgProcLibHandle <> 0 then
-     FreeLibrary(ImgProcLibHandle);
+    FreeLibrary(ImgProcLibHandle);
 
 end.

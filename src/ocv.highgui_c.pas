@@ -894,6 +894,11 @@ const
   HighGuiLibName = highgui_lib;
 var
   HighGuiLibHandle: {$IFDEF FPC}TLibHandle{$ELSE}THandle{$IFEND};
+  {$IFDEF UNIX}
+  HighGuiLibraryPath: string;
+  HighGuiLibraryName: string;
+  HighGuiError: string;
+  {$ENDIF}
 
 implementation
 
@@ -1073,21 +1078,12 @@ external highgui_lib name 'cvCreateTrackbar'{$IFDEF DELAYEDLOADLIB} delayed{$END
 (* procedure cvSetPostprocessFuncWin32(const callback: Pointer); cdecl; external highgui_lib name 'cvSetPostprocessFuncWin32_'{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* procedure set_postprocess_func(const callback: Pointer); cdecl; external highgui_lib name 'cvSetPostprocessFuncWin32_'{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + ExtractFilePath(HighGuiLibName));
-  {$ENDIF}
-  HighGuiLibHandle := LoadLibrary(HighGuiLibName);
-  SetCurrentDir(Path);
+  HighGuiLibHandle := LoadOcvLibrary(HighGuiLibName);
   if HighGuiLibHandle <> 0 then Initialize(HighGuiLibHandle, False);
 
 finalization
   if HighGuiLibHandle <> 0 then
-     FreeLibrary(HighGuiLibHandle);
+    FreeLibrary(HighGuiLibHandle);
 
 end.

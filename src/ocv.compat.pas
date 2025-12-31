@@ -1436,19 +1436,8 @@ end;
 (* procedure cvExtractMSER(_img: PCvArr; _mask: PCvArr; Var contours: pCvSeq; storage: PCvMemStorage; params: TCvMSERParams); cdecl;
   external legacy_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-{$IFDEF UNIX}
-var
-  Path: string;
-{$ENDIF}
 initialization
-  {$IFDEF UNIX}
-  Path := GetCurrentDir;
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ENDIF}
-  LegacyLibHandle := LoadLibrary(LegacyLibName);
-  {$IFDEF UNIX}
-  SetCurrentDir(Path);
-  {$ENDIF}
+  LegacyLibHandle := LoadOcvLibrary(LegacyLibName);
   if LegacyLibHandle <> 0 then Initialize(LegacyLibHandle, False);
 
   CV_MAT32F := CV_32FC1;
@@ -1465,6 +1454,6 @@ initialization
 
 finalization
   if LegacyLibHandle <> 0 then
-     FreeLibrary(LegacyLibHandle);
+    FreeLibrary(LegacyLibHandle);
 
 end.

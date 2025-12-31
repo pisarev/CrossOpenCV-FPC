@@ -807,21 +807,12 @@ end;
 (* procedure cvValidateDisparity(disparity: pCvArr; const cost: pCvArr; minDisparity: Integer; numberOfDisparities: Integer; disp12MaxDiff: Integer = 1); cdecl; external calib3d_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* procedure cvReprojectImageTo3D(const disparityImage: pCvMat; _3dImage: pIplImage; const Q: pCvMat; handleMissingValues: Integer = 0); cdecl; external calib3d_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + Calib3dLibName);
-  {$ENDIF}
-  Calib3dLibHandle := LoadLibrary(Calib3dLibName);
-  SetCurrentDir(Path);
+  Calib3dLibHandle := LoadOcvLibrary(Calib3dLibName);
   if Calib3dLibHandle <> 0 then Initialize(Calib3dLibHandle, False);
 
 finalization
   if Calib3dLibHandle <> 0 then
-     FreeLibrary(Calib3dLibHandle);
+    FreeLibrary(Calib3dLibHandle);
 
 end.

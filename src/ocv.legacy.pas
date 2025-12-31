@@ -6095,21 +6095,12 @@ end;
 (* procedure cvRefineForegroundMaskBySegm(segments: pCvSeq; bg_model: pCvBGStatModel); cdecl; external legacy_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* function cvChangeDetection(prev_frame: pIplImage; curr_frame: pIplImage; change_mask: pIplImage): Integer; cdecl; external legacy_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + LegacyLibName);
-  {$ENDIF}
-  LegacyLibHandle := LoadLibrary(LegacyLibName);
-  SetCurrentDir(Path);
+  LegacyLibHandle := LoadOcvLibrary(LegacyLibName);
   if LegacyLibHandle <> 0 then Initialize(LegacyLibHandle, False);
 
 finalization
   if LegacyLibHandle <> 0 then
-     FreeLibrary(LegacyLibHandle);
+    FreeLibrary(LegacyLibHandle);
 
 end.

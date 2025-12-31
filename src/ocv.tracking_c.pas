@@ -425,21 +425,12 @@ end;
 (* function cvKalmanUpdateByMeasurement(var kalman: TCvKalman; const measurement: pCvMat): pCvMat; cdecl; external tracking_lib name 'cvKalmanCorrect'{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 (* procedure cvReleaseKalman(var kalman: pCvKalman); cdecl; external tracking_lib{$IFDEF DELAYEDLOADLIB} delayed{$ENDIF}; *)
 
-var
-  Path: string;
 initialization
-  Path := GetCurrentDir;
-  {$IFDEF UNIX}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)));
-  {$ELSE}
-  SetCurrentDir(ExtractFilePath(ParamStr(0)) + TrackingLibName);
-  {$ENDIF}
-  TrackingLibHandle := LoadLibrary(TrackingLibName);
-  SetCurrentDir(Path);
+  TrackingLibHandle := LoadOcvLibrary(TrackingLibName);
   if TrackingLibHandle <> 0 then Initialize(TrackingLibHandle, False);
 
 finalization
   if TrackingLibHandle <> 0 then
-     FreeLibrary(TrackingLibHandle);
+    FreeLibrary(TrackingLibHandle);
 
 end.

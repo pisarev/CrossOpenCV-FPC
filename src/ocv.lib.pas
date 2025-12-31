@@ -41,6 +41,9 @@ unit ocv.lib;
 
 interface
 
+uses
+  Classes;
+
 const
   CV_VERSION_EPOCH    = '2';
   CV_VERSION_MAJOR    = '4';
@@ -56,17 +59,9 @@ const
   CV_VERSION_DLL = CV_VERSION_EPOCH + CV_VERSION_MAJOR + CV_VERSION_MINOR;
 
 {$IFDEF MSWINDOWS}
-  {$IFDEF NO_LOCAL_OPENCV2413}
-    CV_DLL_DIR = '';
-  {$ELSE}
-    CV_DLL_DIR = '.\opencv_2.4.13\';
-  {$ENDIF}
+  CV_DLL_DIR = 'opencv_2.4.13\';
 {$ELSE}
-  {$IFDEF NO_LOCAL_OPENCV2413}
-    CV_DLL_DIR = '';
-  {$ELSE}
-    CV_DLL_DIR = './bin/opencv_2.4.13/';
-  {$ENDIF}
+  CV_DLL_DIR = 'bin/opencv_2.4.13/';
 {$ENDIF}
 // -------------------------------
   core_lib =
@@ -254,6 +249,63 @@ const
 // -------------------------------
 //
 
+var
+  OcvLog: TStringList;
+
+function LoadOcvLibrary(const LibraryName: string): {$IFDEF UNIX}TLibHandle{$ELSE}THandle{$ENDIF};
+
 implementation
+
+uses
+  {$IFDEF FPC}
+  SysUtils;
+  {$ELSE}
+  Winapi.Windows, System.SysUtils;
+  {$ENDIF}
+
+function LoadOcvLibrary(const LibraryName: string): {$IFDEF UNIX}TLibHandle{$ELSE}THandle{$ENDIF};
+var
+  Candidates: array[0..1] of string;
+  {$IFDEF MSWINDOWS}Path, {$ENDIF}Candidate, S: string;
+  I: Integer;
+begin
+  Result := 0;
+  FillChar(Candidates, SizeOf(Candidates), 0);
+  Candidates[0] := IncludeTrailingPathDelimiter(GetCurrentDir);
+  Candidates[1] := ExtractFilePath(ParamStr(0));
+  {$IFDEF MSWINDOWS}
+  Path := GetCurrentDir;
+  {$ENDIF}
+  for I := Low(Candidates) to High(Candidates) do
+  begin
+    Candidate := Candidates[I] + LibraryName;
+    if FileExists(Candidate) then
+    begin
+      {$IFDEF MSWINDOWS}
+      SetCurrentDir(ExtractFilePath(Candidate));
+      {$ENDIF}
+      Result  := LoadLibrary({$IFDEF FPC}Candidate{$ELSE}PChar(Candidate){$ENDIF});
+      if Result = 0 then
+        S := {$IFDEF FPC}GetLoadErrorStr{$ELSE}SysErrorMessage(GetLastError){$ENDIF}
+      else
+        if Assigned(OcvLog) then OcvLog.Add(Format('%s:OK (Path=%s)', [LibraryName, Candidates[I]]));
+      Break;
+    end;
+  end;
+  if (Result = 0) and Assigned(OcvLog) then
+    if S = '' then
+      OcvLog.Add(Format('%s:Error=Library not found in search paths: %s; %s', [LibraryName, Candidates[0], Candidates[1]]))
+    else
+      OcvLog.Add(Format('%s:Error=%s; Path=%s', [LibraryName, S, Candidate]));
+  {$IFDEF MSWINDOWS}
+  SetCurrentDir(Path);
+  {$ENDIF}
+end;
+
+initialization
+  OcvLog := TStringList.Create;
+
+finalization
+  OcvLog.Free;
 
 end.
